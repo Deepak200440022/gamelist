@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react'
+import  { useEffect } from 'react'
 
-function Genrelist({games}) {
+function Genrelist({games}:any) {
     useEffect(()=>{
     },[])
   return (
     <div>
         <h2 className='font-bold mt-5 text-[35px] text-black dark:text-white'>{games.name}</h2>
-        <div className='grid grid-cols-1 mt-5 md: grid-cols-2 lg:grid-cols-3 gap-6'>
+        <div className='grid grid-cols-1 mt-5 md:grid-cols-2 lg:grid-cols-3 gap-6'>
         {
-            games.list.map((item)=>(
+            games.list.map((item:any)=>(
                 <div className='p-3 pb-7 h-full rounded-lg cursor-pointer  hover:bg-gray-300  group hover:dark:bg-gray-700 hover:scale-110 transition-all duration-200 ease-in-out'>
                     <img src={item.background_image} className='w-full h-80% 
                     object-cover rounded-xl'/>

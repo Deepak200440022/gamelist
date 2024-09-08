@@ -1,9 +1,4 @@
-import React, { useEffect } from 'react'
-
-function Banner({banner}) {
-    // useEffect(()=>{
-    //     console.log("banner", banner)
-    // })
+function Banner({banner}:any) {
   return (
     <div className='relative '>
         <div className='absolute bottom-0 p-5

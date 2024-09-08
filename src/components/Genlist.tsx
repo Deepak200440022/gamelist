@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Globalapi from "../pages/services/Globalapi";
 
-function Genlist({gen}) {
+function Genlist({gen}:any) {
     const [genlist, setGenlist] = useState([]);
     const [activeindex, setActiveindex] = useState(0);
     useEffect(() => {
@@ -10,6 +10,7 @@ function Genlist({gen}) {
 
     const list = () => {
         Globalapi.getGenreList.then((resp) => {
+            console.log(resp.data.results)
             setGenlist(resp.data.results);
         })
     }
