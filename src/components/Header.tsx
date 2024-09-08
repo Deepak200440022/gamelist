@@ -1,12 +1,9 @@
-import { useContext, useEffect, useState } from "react";
 import Designer from "./../assets/images/Designer.png"
 import { HiOutlineSearch, HiSun } from "react-icons/hi";
 import { HiMoon } from "react-icons/hi";
-import { HiOutlineSun } from "react-icons/hi";
-import { Themecontext } from "../context/Theme";
+import {  useTheme } from "../context/Theme";
 function Header() {
-  // const [toggle, settoggle] = useState(true)
-  const {mode,setmode}= useContext(Themecontext)
+  const {mode,setmode}= useTheme()
   return (
     <div className="flex items-center p-3">
       <img src={Designer} className="rounded-full" height={60} width={60} />

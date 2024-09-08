@@ -1,18 +1,30 @@
 import { useEffect, useState } from "react";
 import Globalapi from "../pages/services/Globalapi";
 
-function Genlist({gen}:any) {
-    const [genlist, setGenlist] = useState([]);
+interface Genre {
+    id: number;
+    name: string;
+    image_background: string;
+}
+interface GenlistProps {
+    gen: (id: number, name: string) => void;
+}
+
+function Genlist({gen}:GenlistProps) {
+    const [genlist, setGenlist] = useState<Genre[]>([]);
     const [activeindex, setActiveindex] = useState(0);
     useEffect(() => {
         list();
     }, [])
 
-    const list = () => {
-        Globalapi.getGenreList.then((resp) => {
-            console.log(resp.data.results)
-            setGenlist(resp.data.results);
-        })
+    const list = async () => {
+        try{
+            const resp = await Globalapi.getGenreList;
+            setGenlist(resp.data.results)
+      
+          } catch (e){
+            console.error("Failed to fetch Genre list", e)
+          }
     }
     return (
         <div className="mr-8">

@@ -18,12 +18,16 @@ function Home() {
     getAllGamesList();
     Getgamesbygenre(4,'Action');
   },[])
-  const getAllGamesList = () =>{
-    Globalapi.getAllGames.then((resp)=>{
+  const getAllGamesList = async () =>{
+    try{
+      const resp = await Globalapi.getAllGames;
       setGamesList(resp.data.results)
-    })
+
+    } catch (e){
+      console.error("Failed to fetch games list", e)
+    }
   }
-  const Getgamesbygenre = (id,name)=>{
+  const Getgamesbygenre = (id:any,name:any)=>{
     Globalapi.getGamesbygenre(id).then((resp)=>{
       setGenregames({name: name,list:resp.data.results});
     })
@@ -31,7 +35,7 @@ function Home() {
   return (
     <div className='grid grid-cols-4 px-8 h-full'>
       <div className='hidden md:block'>
-        <Genlist gen = {(gen,name)=>Getgamesbygenre(gen,name)} />
+        <Genlist gen = {(gen:any,name:any)=>Getgamesbygenre(gen,name)} />
       </div>
       <div className='col-span-4 md:col-span-3'>
         {gamesList?.length>0&&genregames.list?.length>0?
