@@ -1,20 +1,18 @@
+import React, { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction } from 'react';
 
-// export const Themecontext = React.createContext("light");
-
-import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface ThemeContextType {
     mode: string;
-    setmode: (mode: string) => void;
-}
+    setMode: Dispatch<SetStateAction<string>>; }
+
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+
 const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [mode, setMode] = useState("light");
-
     return (
-        <ThemeContext.Provider value={{ mode, setmode: setMode }}>
+        <ThemeContext.Provider value={{ mode, setMode }}>
             {children}
         </ThemeContext.Provider>
     );
